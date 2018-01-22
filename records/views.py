@@ -5,8 +5,6 @@ from .models import Event
 from .utils import check_event,generate_event_url
 
 
-# Create your views here.
-
 def create_event(request):
 
 	if request.method == 'POST':
@@ -14,10 +12,10 @@ def create_event(request):
 		if form.is_valid():
 			form.save()
 			return HttpResponse('Event Created')
+		return HttpResponse('It Failed')
 	else:
 		form = CreateNewEvent()
-		url = generate_event_url
-		return render(request, 'records/create_event.html',{'title': 'testing', 'form': form, 'url': url})
+		return render(request, 'records/create_event.html',{'title': 'testing', 'form': form})
 
 
 def view_events(request):
@@ -29,7 +27,7 @@ def view_events(request):
 
 def add_participant(request, event, hash):
 	if check_event(event, hash):
-		return HttpResponse(event + " : "+" hash")
+		return HttpResponse(event + " : "+ hash)
 
 
 	else: return HttpResponse('404 not found!')

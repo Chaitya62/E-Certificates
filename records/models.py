@@ -19,6 +19,7 @@ class Event(models.Model):
 
 	event_type = models.CharField(max_length=255)
 	event_name = models.CharField(max_length=255)
+	event_url = models.CharField(max_length=1000, null=True, blank=True)
 	attendees = models.ManyToManyField(Attendee)
 
 

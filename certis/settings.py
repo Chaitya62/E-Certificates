@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'records.apps.RecordsConfig',
     'checker.apps.CheckerConfig',
     'creator.apps.CreatorConfig',
     'django.contrib.admin',

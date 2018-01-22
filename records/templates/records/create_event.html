@@ -1,0 +1,42 @@
+{% extends "records/index.html" %}
+{% block recordcontent %}
+
+
+<br>
+<br>
+<br>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10 offset-lg-1 offset-md-2">
+		<div class='card'>
+		
+
+	
+	<div class="card-block">
+		<div class=" text-center lead card-title">
+			Create Event
+		</div>	
+
+		<div class="">
+			<form class="form" action="/event/create/" method="POST">
+				{% csrf_token %}
+				{{ form }}
+				<br /> 	
+				<input class="btn btn-info btn-block" type="submit" value="Add" />	
+			</form>	
+
+		</div>
+
+
+	</div>
+			
+	
+
+
+</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

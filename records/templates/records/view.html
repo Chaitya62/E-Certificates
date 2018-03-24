@@ -14,6 +14,9 @@
 				<tr>
 					<th>Event Name</th>
 					<th>Event Type</th>
+					<th>Registration Link</th>
+					<th>View Attendees</th>
+					<th>Generate Certificates</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,8 +25,14 @@
 				<tr>
 					<td>{{event.event_name}}</td>
 					<td>{{event.event_type}}</td>
-					<td><a href="{{event.event_url}}" target='_blank'>Registration</td>
-				<tr>
+					<td><a href="{{event.event_url}}" target='_blank'>Registration</a></td>
+					<td><a href="{{event.event_url}}view/" target='_blank'>View Attendees</td>
+					<td><form action='.' method="post">
+						{% csrf_token %}
+						<input name='event_url' type = "text" value="{{event.event_url}}" style="display: none" />
+						<input type="submit" value='generate Certificates' />
+					</form></td>
+				</tr>
 
 			{% endfor %}
 			</tbody>

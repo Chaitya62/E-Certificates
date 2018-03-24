@@ -1,4 +1,5 @@
 import hashlib
+from .models import Event
 
 
 def check_event(event, hash):
@@ -22,3 +23,10 @@ def generate_event_url(event_name):
 	url+='/'
 
 	return url
+
+
+def get_event_by_url(event_url):
+
+	data = Event.objects.get(event_url=event_url)
+	return data
+

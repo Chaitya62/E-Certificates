@@ -1,0 +1,36 @@
+{% extends "records/index.html" %}
+{% block recordcontent %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+	
+	<div class="container">
+			<table class="table table-condensed table-striped table-bordered table-inverse table-hover">
+			<thead class="">
+				<tr>
+					<th>Participant Name</th>
+					<th>Email</th>
+					<th>College</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for p in data %}		
+			
+				<tr>
+					<td>{{p.first_name}} {{ p.middle_name}} {{p.last_name}}</td>
+					<td>{{p.email}}</td>
+					<td>{{p.college}}</td>
+				</tr>
+
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+
+{% endblock %}

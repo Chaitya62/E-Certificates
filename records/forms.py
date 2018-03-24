@@ -28,3 +28,13 @@ class CreateNewEvent(forms.ModelForm):
 		return data
 
 
+
+
+class CreateNewParticipant(forms.Form):
+		first_name = forms.CharField(label='First Name',max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
+		middle_name = forms.CharField(label='Middle Name', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+		last_name = forms.CharField(label='Last Name', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+		college = forms.CharField(label='College Name', max_length=255,widget=forms.TextInput(attrs={'class': 'form-control'}))
+		email = forms.EmailField(label='Email', max_length=255,widget=forms.TextInput(attrs={'class': 'form-control'}))
+

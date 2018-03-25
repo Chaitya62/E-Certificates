@@ -1,11 +1,12 @@
-certis/__pycache__/*.pyc
-checker/__pycache__/*.pyc
-creator/__pycache__/*.pyc
+creator/__pycache__/**
+creator/__pycache__/**
+checker/__pycache__/**
+__pycache__
+
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
-**/**/__pycache__/**
 *.pyc
 
 # C extensions

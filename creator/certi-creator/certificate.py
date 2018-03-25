@@ -83,7 +83,7 @@ img = Image.new('RGBA', (200, 100), (255,255,2, 255))
 
 cer.write(516,930, 'Chaitya Shah')
 cer.write(1716, 930, 'TY IT B')
-cer.write(816, 1060, 'Introduction to Competivie Programming')
+cer.write(786, 1060, 'Introduction to Competitive Programming')
 cer.write(1400, 1190, '10-08-17')
 
 

@@ -1,0 +1,16 @@
+
+Name : (516,930)  Dimentions : 1023 x 72
+
+Signatures
+
+Faculty advisor
+1)Computer : (264, 1368)    Dimentions : 180 x  65
+2)IT : (1005, 1368)  Dimentions : 219 x 65
+
+HOD
+1) Computer: (1002, 1383)   Dimentions : 200 x 65
+2) IT: (1341, 1368)      Dimentions : 200 x 65
+
+Committee Head 
+(1698, 1428)  Dimentions : 380 x 60
+

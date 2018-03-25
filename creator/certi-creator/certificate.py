@@ -1,5 +1,24 @@
 from PIL import Image, ImageFont, ImageDraw
 
+"""
+Name : (516,930)  Dimentions : 1023 x 72
+
+Signatures
+
+Faculty advisor
+1)Computer : (264, 1368)    Dimentions : 180 x  65
+2)IT : (1005, 1368)  Dimentions : 219 x 65
+
+HOD
+1) Computer: (1002, 1383)   Dimentions : 200 x 65
+2) IT: (1341, 1368)      Dimentions : 200 x 65
+
+Committee Head 
+(1698, 1428)  Dimentions : 380 x 60
+
+"""
+
+
 
 class Certificate():
 
@@ -53,16 +72,41 @@ class Certificate():
 
 
 
-cer = Certificate('Chaitya Shah', 'Intro to CP', 'null')
+cer = Certificate('Chaitya Shah', 'Intro to CP', './certificate.jpg')
 
-cer.certificate = Image.new('RGBA',(800, 400) ,(255,255,255,255))
+cer.load_certificate()
 
 
-cer.load_font('font.ttf', 100)
-img = Image.new('RGBA', (100, 50), (255,255,2, 255))
-cer.write(100, 150, 'Chaitya Shah')
-cer.put_image(img, 200, 300)
-cer.put_image(img, 500, 300)
+cer.load_font('font.ttf', 70)
+img = Image.new('RGBA', (200, 100), (255,255,2, 255))
+
+
+cer.write(516,930, 'Chaitya Shah')
+cer.write(1716, 930, 'TY IT B')
+cer.write(816, 1060, 'Introduction to Competivie Programming')
+cer.write(1400, 1190, '10-08-17')
+
+
+cer.load_font('font.ttf', 30)
+cer.write(516, 1615, 'authenticate at: http://localhost:8000/event/testing/ae2b1fca515949e5d54fb22b8ed95575/')
+
+# Faculty advisor comps
+cer.put_image(img, 264, 1323)
+
+# Faculty advisor IT
+cer.put_image(img, 605, 1323)
+
+# HOD COMPS
+cer.put_image(img, 1002, 1323)
+
+# HOD IT
+cer.put_image(img, 1341, 1323)
+
+# Committee HEAD 1
+cer.put_image(img, 1698, 1323)
+
+# Committee HEAD 2
+cer.put_image(img, 1938, 1323)
 cer.save()
 
 

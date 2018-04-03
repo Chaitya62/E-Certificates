@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from .credentials import email_username, email_password
 
 # Loading Celery
 import djcelery
@@ -18,11 +19,23 @@ djcelery.setup_loader()
 
 
 # Broker Settings
-BROKER_HOST = 'localhost'
-BROKER_PORT = 5672
-BROKER_USER = 'guest'
-BROKER_PASSWORD = 'guest'
-BROKER_VHOST = '/'
+# BROKER_HOST = 'localhost'
+# BROKER_PORT = 5672
+# BROKER_USER = 'guest'
+# BROKER_PASSWORD = 'guest'
+# BROKER_VHOST = '/'
+
+
+
+
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
+
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'
+CELERY_TASK_SERIALIZER = 'json'
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -133,8 +146,8 @@ USE_TZ = True
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'chaitya62@gmail.com'
-EMAIL_HOST_PASSWORD = 'Champtimes555'
+EMAIL_HOST_USER = email_username
+EMAIL_HOST_PASSWORD = email_password
 EMAIL_PORT = 587
 
 

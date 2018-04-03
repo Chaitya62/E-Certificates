@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db import IntegrityError
 
-from .tasks import TestTask
+from .tasks import TestTask, generate_certificate
 from django.core.mail import EmailMessage
 from records.models import Event, Attendee
 from records.utils import generate_event_url, get_event_by_url
 from .utils import generate_hash
 from .models import Certificate
+
 
 
 # Create your views here.
@@ -17,7 +18,13 @@ from .models import Certificate
 def test(request):
 
 
-	TestTask.delay("Hello, World!")
+	# email = EmailMessage('title', 'body', to=['chaitya.shah@somaiya.edu'])
+	# email.send()
+
+
+	generate_certificate.delay("Hello, World!")
+
+
 
 
 

@@ -34,6 +34,8 @@ class Certificate():
 		self.signatures = None
 		self.font = None
 		self.fontColor = (0, 0, 0)
+		self.format = 'png'
+
 
 
 		# array of tuples [(w, h), ...]
@@ -68,7 +70,7 @@ class Certificate():
 
 
 	def save(self):
-		self.certificate.save('out.png')
+		self.certificate.save('out.'+self.format)
 
 
 

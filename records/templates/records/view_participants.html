@@ -7,9 +7,9 @@
 <br>
 <br>
 
-	
+
 	<div class="container">
-			<table class="table table-condensed table-striped table-bordered table-inverse table-hover">
+			<table class="table table-condensed table-bordered table-inverse table-hover">
 			<thead class="">
 				<tr>
 					<th>Participant Name</th>
@@ -18,8 +18,8 @@
 				</tr>
 			</thead>
 			<tbody>
-			{% for p in data %}		
-			
+			{% for p in data %}
+
 				<tr>
 					<td>{{p.first_name}} {{ p.middle_name}} {{p.last_name}}</td>
 					<td>{{p.email}}</td>

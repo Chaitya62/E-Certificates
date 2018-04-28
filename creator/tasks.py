@@ -13,9 +13,10 @@ from django.core.mail import EmailMessage
 
 
 
+
 @shared_task  # Use this decorator to make this a asyncronous function
 def generate_certificate(test):
-    	
+
 	print(test)
 
 	subject, from_email, to = 'Welcome', 'chaitya62gmail.com','chaitya.shah@somaiya.edu'

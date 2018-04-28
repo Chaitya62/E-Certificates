@@ -1,0 +1,47 @@
+{% extends 'creator/index.html' %}
+
+{% block content %}
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <div class="form">
+        <form action="." method="POST">
+          <fieldset>
+
+        <legend>Login</legend>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username"  class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password"  class="form-control" />
+          </div>
+
+        <div class="form-group">
+            <input type="submit" value="submit" class="form-control" />
+        </div>
+
+        </fieldset>
+
+        </form>
+      </div>
+
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+
+
+</div>
+
+
+
+{% endblock %}

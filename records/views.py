@@ -1,17 +1,27 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import CreateNewEvent, CreateNewParticipant
 from .models import Event,Attendee
 from .utils import check_event,generate_event_url, get_event_by_url
 
 
+def is_logged_in(request):
+
+	return request.user.is_authenticated
+
+
+
 def create_event(request):
+
+
+	if not is_logged_in(request):
+		return HttpResponseRedirect('/login/')
 
 	if request.method == 'POST':
 		form = CreateNewEvent(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponse('Event Created')
+			return HttpResponseRedirect('/home/')
 		return HttpResponse('It Failed')
 	else:
 		form = CreateNewEvent()
@@ -23,6 +33,10 @@ def create_event(request):
 
 def view_events(request):
 
+	if not is_logged_in(request):
+		return HttpResponseRedirect('/login/')
+
+
 	if request.method == 'GET':
 		data = Event.objects.all()
 		return render(request, 'records/view.html', {'title': 'view', 'data': data})
@@ -30,17 +44,27 @@ def view_events(request):
 		data = request.POST.get('event_url')
 		event = get_event_by_url(data)
 		attendees = event.attendees.all()
-		# request certificate generation here(async) 
-		# try to use celery here 
+
+
+		# request certificate generation here(async)
+		# try to use celery here
 		return HttpResponse("Done!")
 
 
 def view_participants(request):
 
+	if not is_logged_in(request):
+		return HttpResponseRedirect('/login/')
+
 	data = Attendee.objects.all()
 	return render(request, 'records/view_participants.html', {'title': 'Attendees', 'data': data})
 
 def view_attendees(request, event, hash):
+
+	if not is_logged_in(request):
+		return HttpResponseRedirect('/login/')
+
+
 	url = generate_event_url(event)
 	event =  get_event_by_url(url)
 	data = event.attendees.all()
@@ -61,10 +85,10 @@ def add_participant(request, event, hash):
 				event =  get_event_by_url(url)
 
 				event.attendees.add(p)
-	
+
 
 				#for field in data.keys():
-					
+
 				#p.save()
 				return HttpResponse('done!!!')
 			return HttpResponse("Failed ....")
@@ -77,13 +101,10 @@ def add_participant(request, event, hash):
 
 
 
-	else: 
+	else:
 		return HttpResponse('404 not found!')
 
 
 
 def test(request, te):
 	return HttpResponse('sup ? '+te)
-
-
-

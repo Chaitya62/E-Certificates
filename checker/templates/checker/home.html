@@ -1,0 +1,61 @@
+{% extends 'creator/index.html' %}
+
+{% block content %}
+
+
+<br>
+<br>
+<br>
+
+<div class="container">
+
+
+  <h1 class="text-center" >Actions</h1>
+  <br />
+
+  <div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">Create events</div>
+      <div class="card-body">
+
+        <p>Create new events</p>
+        <a href="/event/create/" class="btn btn-info">Create</a>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">View Events</div>
+        <div class="card-body">
+
+          <p>View events that have been created</p>
+
+          <a href="/event/view/" class="btn btn-info">View</a>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">Othere....</div>
+        <div class="card-body">
+
+          <p>Do something....</p>
+
+          <button class="btn btn-info">here</button>
+        </div>
+      </div>
+
+
+    </div> -->
+  </div>
+
+
+</div>
+
+
+
+{% endblock %}

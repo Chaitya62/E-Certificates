@@ -31,6 +31,12 @@ def test(request):
 	return HttpResponse("Done!")
 
 
+
+def certificate(request):
+
+	return render(request, 'creator/certificate.html')
+
+
 def make_cert(request, event_name):
 
 	if request.method == 'GET':

@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import CreateNewEvent, CreateNewParticipant
 from .models import Event,Attendee
 from .utils import check_event,generate_event_url, get_event_by_url
+from creator.tasks import generate_certificates
 
 
 def is_logged_in(request):
@@ -45,10 +46,13 @@ def view_events(request):
 		event = get_event_by_url(data)
 		attendees = event.attendees.all()
 
+		event_id = request.POST.get('event_id')
 
+
+		generate_certificates(event_id)
 		# request certificate generation here(async)
 		# try to use celery here
-		return HttpResponse("Done!")
+		return HttpResponse("Done")
 
 
 def view_participants(request):

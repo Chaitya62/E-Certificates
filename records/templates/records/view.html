@@ -7,7 +7,7 @@
 <br>
 <br>
 
-	
+
 	<div class="container">
 			<table class="table table-condensed table-striped table-bordered table-inverse table-hover">
 			<thead class="">
@@ -20,8 +20,8 @@
 				</tr>
 			</thead>
 			<tbody>
-			{% for event in data %}		
-			
+			{% for event in data %}
+
 				<tr>
 					<td>{{event.event_name}}</td>
 					<td>{{event.event_type}}</td>
@@ -29,6 +29,7 @@
 					<td><a href="{{event.event_url}}view/" target='_blank'>View Attendees</td>
 					<td><form action='.' method="post">
 						{% csrf_token %}
+						<input type="text" style="display: None" value="{{event.id}}" name="event_id" />
 						<input name='event_url' type = "text" value="{{event.event_url}}" style="display: none" />
 						<input type="submit" value='generate Certificates' />
 					</form></td>

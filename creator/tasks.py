@@ -41,7 +41,7 @@ def send_mail(attendee, event):
 
 	msg.send()
 
-	return HttpResponse(html_content)
+	#return HttpResponse(html_content)
 
 
 # @shared_task  # Use this decorator to make this a asyncronous function
@@ -54,7 +54,7 @@ def generate_certificates(event_id):
 
 
 	for attendee in attendees:
-		return send_mail(attendee, event)
+		send_mail(attendee, event)
 
 
 

@@ -4,6 +4,8 @@ from creator.models import Certificate
 from django.contrib.auth import login, logout, authenticate
 from django.views.decorators.csrf import csrf_exempt
 
+from creator.models import Certificate
+
 # Create your views here.
 
 def is_logged_in(request):
@@ -63,4 +65,5 @@ def show_certificate(request, certificate_hash):
 	string_to_show = "Name: " + certificate.certificate_holder.first_name + " " + certificate.certificate_holder.middle_name + " " + certificate.certificate_holder.last_name
 	string_to_show = string_to_show + "<br>College: " + certificate.certificate_holder.college + "<br>Email: " + certificate.certificate_holder.email
 	string_to_show = string_to_show + "<br>Event Name: " + certificate.certificate_event.event_name
-	return render(request, 'checker/view_cert.html',{'title': certificate.certificate_event.event_name, 'event_name': certificate.certificate_event.event_name, 'name': certificate.certificate_holder.first_name + " " + certificate.certificate_holder.middle_name + " " + certificate.certificate_holder.last_name, 'email': certificate.certificate_holder.email, 'college': certificate.certificate_holder.college})
+	return render(request, 'creator/certificate.html',{'url': request.build_absolute_uri("/certificate/" + certificate_hash),'name': certificate.certificate_holder.first_name + " " + certificate.certificate_holder.middle_name + " " + certificate.certificate_holder.last_name, 'year': certificate.certificate_holder.year_of_study, 'branch': certificate.certificate_holder.branch, 'event_name': certificate.certificate_event.event_name, 'date': certificate.certificate_event.event_date});
+

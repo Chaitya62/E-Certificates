@@ -45,11 +45,8 @@ def view_events(request):
 		data = request.POST.get('event_url')
 		event = get_event_by_url(data)
 		attendees = event.attendees.all()
-
 		event_id = request.POST.get('event_id')
-
-
-		generate_certificates(event_id)
+		generate_certificates(event_id, request)
 		# request certificate generation here(async)
 		# try to use celery here
 		return HttpResponse("Done")

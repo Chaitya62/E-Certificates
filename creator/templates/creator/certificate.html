@@ -33,7 +33,35 @@
     }
 
   </style>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script language="javascript">
 
+$(document).ready(function() {
+
+  function gup( name, url ) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( url );
+    return results == null ? null : results[1];
+}
+
+if(gup("download") === "true") {
+  html2canvas($(".container")[0]).then(canvas => {
+      var link = document.createElement('a');
+      link.href = canvas.toDataURL();
+      link.download =  "Codecell-Certificate.png";
+      link.click();
+  });
+}
+
+});
+</script>
 
 </head>
 <body>
@@ -175,7 +203,7 @@
     <div class="col-lg-12">
 
       <p class="text-center">
-        Check online at : www.somelinkhere.com/tocheckthiscertificate
+        To verify this certificate visit: {{url}}
       </p>
 
     </div>

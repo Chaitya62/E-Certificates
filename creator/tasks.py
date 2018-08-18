@@ -8,44 +8,36 @@ from celery import shared_task
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.utils.crypto import get_random_string
 
 from django.http import HttpResponse
+from django.http import HttpRequest
+from django.db import IntegrityError
 
 
 from records.models import Event
+from creator.models import Certificate
+from creator.utils import generate_hash
 
 
 
-def send_mail(attendee, event):
+def send_mail(attendee, event, certificate, request):
 
 	subject, from_email, to = 'Here is your certificate', 'codecell.engg@gmail.com',attendee.email
 
-	data = {}
-
-	data['name'] = str(attendee)
-	data['year'] = attendee.year_of_study
-	data['event_name'] = str(event)
-	data['branch'] = attendee.branch
-	data['date'] = str(event.event_date)
-
-	html_content = render_to_string('creator/certificate.html', data)
-
-	text_content = strip_tags(html_content)
-
-
+	text_content = "Hello, " + attendee.first_name + "<br><br>&emsp;Your certificate for " + event.event_name + " is ready." + "<br>&emsp;You can view and verify your certificate at : " + request.build_absolute_uri("/certificate/" + certificate.certificate_identifier) + "<br>&emsp;You can download your certificate at: " + request.build_absolute_uri("/certificate/" + certificate.certificate_identifier + "/?download=true");
 
 	msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 
-
-	msg.attach_alternative(html_content, "text/html")
+	msg.attach_alternative(text_content, "text/html")
 
 	msg.send()
 
-	#return HttpResponse(html_content)
+	# return HttpResponse(html_content)
 
 
 # @shared_task  # Use this decorator to make this a asyncronous function
-def generate_certificates(event_id):
+def generate_certificates(event_id, request):
 
 
 	event = Event.objects.get(id=event_id)
@@ -54,7 +46,17 @@ def generate_certificates(event_id):
 
 
 	for attendee in attendees:
-		send_mail(attendee, event)
+		for attendee in event.attendees.all():
+			# Now generate model
+			try:
+				print(event.event_name + " " + event.event_url)
+				certificate = Certificate(certificate_identifier = get_random_string(length = 7), certificate_holder = attendee, certificate_event = event)
+				certificate.save()
+				send_mail(attendee, event, certificate, request)
+			except IntegrityError:
+				print("Already Created Certificate For This User")
+			except:
+				print("Something was wrong with certificate generation for a user, ignored..")
 
 
 
